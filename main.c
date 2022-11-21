@@ -3001,6 +3001,10 @@ int main() {
 	FILE *fp;
 	struct data gamedata;
 
+	const int SCREEN_FPS = 60;
+	const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
+	int starting_tick = SDL_GetTicks64();
+
 	if ((fp = fopen("/dev/urandom", "rb")) != NULL) {
 		fread(&randomvalue, sizeof(int),1,fp);
 		fclose(fp);
@@ -3059,6 +3063,10 @@ int main() {
 		}
 		process_input(&gamedata);
 		SDL_UpdateWindowSurface(gamedata.window);
+
+		if (SCREEN_TICKS_PER_FRAME > SDL_GetTicks64() - starting_tick) {
+			SDL_Delay(SCREEN_TICKS_PER_FRAME - (SDL_GetTicks64() - starting_tick));
+		}
 	}
 
 	uninit_system(&gamedata);
