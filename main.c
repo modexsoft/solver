@@ -3022,6 +3022,8 @@ int main() {
 	SDL_Delay(150);
 
 	while (!gamedata.exit) {
+		starting_tick = SDL_GetTicks64();
+		
 		SDL_FillRect(gamedata.screenSurface, NULL, 0x000000);
 
  		if (gamedata.screen == TITLE_SCREEN) {
