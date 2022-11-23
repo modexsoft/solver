@@ -1,4 +1,4 @@
-# solver
+# Solver: the math quiz master
 
 DESCRIPTION
 
